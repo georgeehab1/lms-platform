@@ -41,7 +41,7 @@ export default function InstructorDashboard() {
   const fetchMyCourses = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/courses/instructor', {
+      const response = await fetch('https://lmsplatform-qla91z3r.b4a.run/api/courses/instructor', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -83,7 +83,7 @@ export default function InstructorDashboard() {
     if (!window.confirm('Are you sure you want to delete this course? This action cannot be undone.')) return;
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/courses/${id}`, {
+      const response = await fetch(`https://lmsplatform-qla91z3r.b4a.run/api/courses/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -138,7 +138,7 @@ export default function InstructorDashboard() {
 
     try {
       const token = localStorage.getItem('token');
-      const url = editingId ? `http://localhost:5000/api/courses/${editingId}` : 'http://localhost:5000/api/courses';
+      const url = editingId ? `https://lmsplatform-qla91z3r.b4a.run/api/courses/${editingId}` : 'https://lmsplatform-qla91z3r.b4a.run/api/courses';
       const method = editingId ? 'PUT' : 'POST';
 
       const response = await fetch(url, {

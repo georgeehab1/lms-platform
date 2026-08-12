@@ -27,7 +27,7 @@ export default function CourseManager() {
 
   const fetchCourseDetails = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/courses/${id}`);
+      const response = await fetch(`https://lmsplatform-qla91z3r.b4a.run/api/courses/${id}`);
       const data = await response.json();
       if (response.ok) setCourse(data);
     } catch (error) {
@@ -40,7 +40,7 @@ export default function CourseManager() {
   const fetchQuizzes = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/quizzes/course/${id}`, {
+      const response = await fetch(`https://lmsplatform-qla91z3r.b4a.run/api/quizzes/course/${id}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -69,7 +69,7 @@ export default function CourseManager() {
     if (!window.confirm('Are you sure you want to delete this lesson?')) return;
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/courses/${id}/lessons/${lessonId}`, {
+      const response = await fetch(`https://lmsplatform-qla91z3r.b4a.run/api/courses/${id}/lessons/${lessonId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -85,8 +85,8 @@ export default function CourseManager() {
     try {
       const token = localStorage.getItem('token');
       const url = editingLessonId 
-        ? `http://localhost:5000/api/courses/${id}/lessons/${editingLessonId}` 
-        : `http://localhost:5000/api/courses/${id}/lessons`;
+        ? `https://lmsplatform-qla91z3r.b4a.run/api/courses/${id}/lessons/${editingLessonId}` 
+        : `https://lmsplatform-qla91z3r.b4a.run/api/courses/${id}/lessons`;
       const method = editingLessonId ? 'PUT' : 'POST';
 
       const response = await fetch(url, {
@@ -128,7 +128,7 @@ export default function CourseManager() {
     setIsSubmitting(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/quizzes', {
+      const response = await fetch('https://lmsplatform-qla91z3r.b4a.run/api/quizzes', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({

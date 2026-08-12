@@ -27,7 +27,7 @@ export default function StudentDashboard() {
     try {
       const token = localStorage.getItem('token');
       
-      const courseRes = await fetch('http://localhost:5000/api/courses', {
+      const courseRes = await fetch('https://lmsplatform-qla91z3r.b4a.run/api/courses', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const courseData = await courseRes.json();
@@ -43,7 +43,7 @@ export default function StudentDashboard() {
         setEnrolledCourseIds(enrolled);
 
         const progressPromises = enrolled.map(async (courseId) => {
-          const res = await fetch(`http://localhost:5000/api/progress/${courseId}`, {
+          const res = await fetch(`https://lmsplatform-qla91z3r.b4a.run/api/progress/${courseId}`, {
             headers: { 'Authorization': `Bearer ${token}` }
           });
           const data = await res.json();
@@ -78,7 +78,7 @@ export default function StudentDashboard() {
     setEnrollingId(courseId);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/courses/${courseId}/enroll`, {
+      const response = await fetch(`https://lmsplatform-qla91z3r.b4a.run/api/courses/${courseId}/enroll`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
