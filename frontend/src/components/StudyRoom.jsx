@@ -23,10 +23,10 @@ export default function StudyRoom() {
   const fetchCourseAndProgress = async () => {
     try {
       const token = localStorage.getItem('token');
-      const courseRes = await fetch(`https://lmsplatform-qla91z3r.b4a.run/api/courses/${id}`, {
+      const courseRes = await fetch(`http://localhost:5000/api/courses/${id}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
-      const progRes = await fetch(`https://lmsplatform-qla91z3r.b4a.run/api/progress/${id}`, {
+      const progRes = await fetch(`http://localhost:5000/api/progress/${id}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -48,7 +48,7 @@ export default function StudyRoom() {
   const fetchQuizzes = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`https://lmsplatform-qla91z3r.b4a.run/api/quizzes/course/${id}`, {
+      const response = await fetch(`http://localhost:5000/api/quizzes/course/${id}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) setQuizzes(await response.json());
@@ -61,7 +61,7 @@ export default function StudyRoom() {
     if (completedLessons.includes(lessonId)) return;
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch(`https://lmsplatform-qla91z3r.b4a.run/api/progress/${id}/lesson`, {
+      const res = await fetch(`http://localhost:5000/api/progress/${id}/lesson`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({ lessonId })
@@ -82,7 +82,7 @@ export default function StudyRoom() {
 
     try {
       const token = localStorage.getItem('token');
-      await fetch(`https://lmsplatform-qla91z3r.b4a.run/api/progress/${id}/quiz`, {
+      await fetch(`http://localhost:5000/api/progress/${id}/quiz`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({ quizId: quiz._id, score, total: quiz.questions.length })
